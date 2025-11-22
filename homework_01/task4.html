@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/style1.css">
+		<!-- Підключаємо React -->
+		<script
+			crossorigin
+			src="https://unpkg.com/react@18/umd/react.development.js">
+		</script>
+		<!-- Підключаємо ReactDOM -->
+		<script
+			crossorigin
+			src="https://unpkg.com/react-dom@18/umd/react-dom.development.js">
+		</script>
+		<!-- Babel для підтримки JSX -->
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<title>React</title>
+
+	</head>
+	<body>
+		<div class="wrapper">
+			<header class="header header--margin">
+				<h1>Задача №4</h1>
+				<h3>“Рахунок у банку”</h3>
+			</header>
+			<main class="page page--margin">
+				<div>
+					<p>Вимоги:</p>
+					<ol>
+						<li> Спочатку сума дорівнює 0грн. Змінити суму у гривнях можна або
+							зарахуванням на рахунок, або зняттям.</li>
+						<li> Сума автоматично переводиться у долари та євро (фіксований курс
+							задається у data).</li>
+						<li> можливість зарахувати суму (контролювати, щоб не була від’ємною)</li>
+						<li> можливість зняти (щоб не можна зняти більше ніж є на рахунку)</li>
+						<li> при виконанні зняття і зарахування коштів вираховувати 3% від суми
+							(відображати кількість відсотків автоматично)</li>
+					</ol>
+					<p>При зміні суми :</p>
+					<ul>
+						<li> якщо було зняття, то суму відображати червоним</li>
+
+						<li>якщо було зарахування, то суму відображати зеленим</li>
+
+					</ul>
+					<p>Якщо сума валюти менша за 100 то відображати червоним кольором, інакше -
+						зеленим</p>
+
+				</div>
+				<br>
+				<div id="root"></div>
+
+				<script type="text/babel">
+
+					function BankAccount(){
+						const [amountOnAccount, setAmountOnAccount] = React.useState(0) // баланс
+						const [credit, setCredit] = React.useState(0)   //зараховано
+						const [remove, setRemove] = React.useState(0)   // знято
+						const [percent, setPercent] = React.useState(0) // відсоток
+						const [lastOperation, setLastOperation] = React.useState(null)
+
+						const	amountInDollars = amountOnAccount/42  // перерахунок в долари
+						const	amountInEuros = amountOnAccount/48   // перерахунок в євро
+						
+						const colorDollars = amountInDollars>100? 'green':'red'
+						const colorEuros = amountInEuros>100? 'green':'red'
+						const colorAmountOnAccount = 
+							lastOperation === 'deposit' ? 'green' :
+  							lastOperation === 'withdraw' ? 'red' :
+  							'black'
+
+						function creditToAccount(){   // Зарахувати на рахунок
+							if(credit<0){
+								 setCredit(0)
+								 return
+								}
+							const commission = credit*0.03
+							setAmountOnAccount((prevSum)=>prevSum+credit-commission)
+							setPercent(commission)
+							setCredit(0)
+							setLastOperation('deposit')
+						}
+
+						function removeFromAccount(){   //Зняти з рахунку
+							const commission = remove*0.03
+							const payment = remove+commission
+							if(payment>amountOnAccount){
+								return alert('Недостатньо коштів ')
+							}
+							setAmountOnAccount((prevAmount)=>prevAmount-payment)
+							setPercent(commission)
+							setRemove(0)
+							setLastOperation('withdraw')
+						}
+
+						return(
+							<React.Fragment>
+								<div style={{color:colorAmountOnAccount}}>Сума на рахунку : {amountOnAccount.toFixed(2)} грн</div>
+								<br/>
+
+								<div>
+									<label>Зарахувати на рахунок
+										<input type="number" value={credit} 
+											onChange={(e) => setCredit(Number(e.target.value))}/>
+									</label>
+									<button onClick={creditToAccount}>Зарахувати</button>
+								</div>
+								<br/>
+								<div>
+									<label>Зняти з рахунку
+										<input type="number" value={remove}
+											onChange={(e) => setRemove(Number(e.target.value))}/>
+									</label>
+									<button onClick={removeFromAccount}>Зняти</button>
+								</div>
+								<br/>
+
+								<div>Відсоток за обслуговування: {percent} грн</div>
+								<br/>
+								<div style={{color:colorDollars}}>Сума у доларах: {amountInDollars.toFixed(2)} $</div>
+								<br/>
+								<div style={{color:colorEuros}}>Сума у євро: {amountInEuros.toFixed(2)} Є</div>
+								<br/>
+								
+							</React.Fragment>
+						)
+					}
+     
+      		// Головний компонент App
+      			function App() {
+        				return <BankAccount/>
+      			}
+
+      		// Отримуємо DOM-елемент з id="root"
+      			const root = ReactDOM.createRoot(document.getElementById('root'))
+
+      		// Рендеримо компонент App у елемент root
+      			root.render(React.createElement(App))
+    			</script>
+
+			</main>
+			<footer class="footer">Tsukanova Olha</footer>
+		</div>
+	</body>
+</html>

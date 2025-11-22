@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/style1.css">
+		<!-- Підключаємо React -->
+		<script
+			crossorigin
+			src="https://unpkg.com/react@18/umd/react.development.js">
+		</script>
+		<!-- Підключаємо ReactDOM -->
+		<script
+			crossorigin
+			src="https://unpkg.com/react-dom@18/umd/react-dom.development.js">
+		</script>
+		<!-- Babel для підтримки JSX -->
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<title>React</title>
+
+	</head>
+	<body>
+		<div class="wrapper">
+			<header class="header header--margin">
+				<h1>Задача №2</h1>
+				<h3>Вводиться номер місяця. Автоматично виводити рекомендований одяг (зима –
+					пальто, літо – шорти ….). Також автоматично виводити зображення з
+					відповідним зображенням лісу (зима – ліс зі снігом, осінь – жовтий ліс,
+					…).</h3>
+			</header>
+			<main class="page page--margin">
+				<div id="root"></div>
+
+				<script type="text/babel">
+					function Season(){
+						const [month, setMonth] = React.useState(1)
+						const change = (e) => setMonth(Number(e.target.value))
+						let clothing = ''
+						let forestImage = ''
+
+						switch(month){
+							case 1:
+							case 2:
+							case 12:	
+								clothing = 'Пальто'
+								forestImage = 'img/winter.jpg'
+							break;
+							case 3:
+							case 4:
+							case 5:	
+								clothing = 'Куртка'
+								forestImage = 'img/spring.jpg'
+							break;	
+							case 6:
+							case 7:
+							case 8:	
+								clothing = 'Шорти'
+								forestImage = 'img/summer.jpg'
+							break;
+							case 9:
+							case 10:
+							case 11:	
+								clothing = 'Дощовик'
+								forestImage = 'img/autumn.jpg'
+							break;
+							default:
+								alert('Введіть число від 1 до 12')	
+						}
+
+						return(
+							<React.Fragment>
+								<div>
+									<label>Номер місяця
+										<input type="number" value={month}
+											onChange={change}/>
+									</label>
+								</div>
+								<br/>
+								
+								<div>рекомендовано одяг : {clothing}</div>
+								<div><img src={forestImage} /></div>
+								
+							</React.Fragment>
+						)
+					}
+     
+      		// Головний компонент App
+      			function App() {
+        				return <Season/>
+      			}
+
+      		// Отримуємо DOM-елемент з id="root"
+      			const root = ReactDOM.createRoot(document.getElementById('root'))
+
+      		// Рендеримо компонент App у елемент root
+      			root.render(React.createElement(App))
+    			</script>
+
+			</main>
+			<footer class="footer">Tsukanova Olha</footer>
+		</div>
+	</body>
+</html>

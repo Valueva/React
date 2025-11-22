@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/style1.css">
+		<!-- Підключаємо React -->
+		<script
+			crossorigin
+			src="https://unpkg.com/react@18/umd/react.development.js">
+		</script>
+		<!-- Підключаємо ReactDOM -->
+		<script
+			crossorigin
+			src="https://unpkg.com/react-dom@18/umd/react-dom.development.js">
+		</script>
+		<!-- Babel для підтримки JSX -->
+		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+		<title>React</title>
+
+	</head>
+	<body>
+		<div class="wrapper">
+			<header class="header header--margin">
+				<h1>Задача №3</h1>
+				<h3>Задано початок та кінець діапазону. При натисканні на кнопку випадковим
+					чином генерувати значення з вказаного діапазону та відображати його.</h3>
+			</header>
+			<main class="page page--margin">
+				<div id="root"></div>
+
+				<script type="text/babel">
+
+					function GenerateValues(){
+						const [number1, setNumber1] = React.useState(0)
+						const [number2, setNumber2] = React.useState(0)
+
+						const [result, setResult] = React.useState()
+
+						function generateValue(){
+						const randomNumber = Math.floor(Math.random()*(number1-number2+1))+number2
+						setResult(randomNumber)
+						}
+
+						return(
+							<React.Fragment>
+								<div>
+									<label>початок діапазону
+										<input type="number" value={number1}
+											onChange={(e) => setNumber1(Number(e.target.value))}/>
+									</label>
+									<br/>
+									<br/>
+									<label>кінець діапазону
+										<input type="number" value={number2}
+											onChange={(e) => setNumber2(Number(e.target.value))}/>
+									</label>
+								</div>
+								<br/>
+								<button onClick={generateValue}>згенерувати значення</button>
+								<div>Значення {result}</div>
+							</React.Fragment>
+						)
+
+					}
+					
+     
+      		// Головний компонент App
+      			function App() {
+        				return <GenerateValues/>
+      			}
+
+      		// Отримуємо DOM-елемент з id="root"
+      			const root = ReactDOM.createRoot(document.getElementById('root'))
+
+      		// Рендеримо компонент App у елемент root
+      			root.render(React.createElement(App))
+    			</script>
+
+			</main>
+			<footer class="footer">Tsukanova Olha</footer>
+		</div>
+	</body>
+</html>
