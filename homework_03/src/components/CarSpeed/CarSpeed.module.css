@@ -1,0 +1,20 @@
+.orange{
+	background-color: orange;
+}
+
+.red{
+	background-color: red;
+}
+
+.green{
+	background-color: green;
+}
+.colorless{
+	background-color: none;
+}
+
+.container{
+	border: 1px solid black;
+ 	padding: 50px 200px;
+  	margin-bottom: 30px;
+}

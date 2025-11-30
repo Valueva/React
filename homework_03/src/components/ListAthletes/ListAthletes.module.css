@@ -1,0 +1,58 @@
+
+.box{
+	display: flex;
+	gap: 20px;
+	align-items: center;
+}
+
+.item{
+	border: 1px solid black;
+	min-width: 200px;
+	min-height: 350px;
+	text-align: center;
+	justify-content: center;
+}
+.container{
+	border: 1px solid black;
+ 	padding: 50px 200px;
+  	margin-bottom: 30px;
+}
+.btt-left{
+	border: 1px, solid, green;
+	position: relative;
+}
+.btt-rigth{
+	border: 1px, solid, red;
+	position: relative;
+}
+
+.btt-left img,
+.btt-rigth img {
+	max-width: 20px;
+	max-height: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+  }
+
+ul{
+	align-items: center;
+	padding: 10px;
+	
+}
+  
+  li{
+	
+	border: 1px solid black;
+	display: flex;
+	margin-bottom: 10px;
+	justify-content: space-around;
+	padding: 5px;
+  }
+
+ p{
+	margin: 0;
+	min-width: 100px;
+	text-align: left;
+ } 
