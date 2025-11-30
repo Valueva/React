@@ -1,0 +1,45 @@
+.container{
+	border: 1px solid black;
+ 	padding: 50px 200px;
+  	margin-bottom: 30px;
+}
+
+.container-lists{
+	
+		display: flex;
+		flex-direction: column;
+		gap: .8rem;
+		list-style: none;
+		text-align: start;
+}
+
+.container-list:not(:last-child) {
+    margin-bottom: 50px;
+}
+
+.container-list--title{
+	display: flex;
+	margin-bottom: 15px;
+	gap:30px;
+	align-items: center;
+
+}
+.container-list--title div{
+	display: flex;
+	flex-direction: column;
+	flex-basis: 700px;
+	align-items: flex-start;
+	gap:10px;
+	
+}
+
+img{
+	width: 100px;
+	height: 100px;
+	align-self: center;
+	
+}
+span{
+	align-self: flex-start;
+}
+
