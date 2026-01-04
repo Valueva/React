@@ -1,0 +1,15 @@
+.section{
+	display: flex;
+	gap: 50px;
+	text-align: center;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+.item{
+	color: red;
+	font-size: 20px;
+}
+.centerButton{
+	display: flex;       
+	justify-content: center;
+}

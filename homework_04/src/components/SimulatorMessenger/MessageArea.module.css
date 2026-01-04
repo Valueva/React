@@ -1,0 +1,36 @@
+
+.section{
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+}
+.container{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+button{
+	border: 1px, solid, black;
+	max-height: 30px;
+	background-color: gray;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+p{
+	width: 200px;
+	word-wrap: break-word;
+	border: 1px, solid, black;
+	background-color: rgb(218, 216, 216);
+	border-radius: 10px;
+}
+span{
+	width: 100px;
+	word-wrap: break-word;
+	border: none;
+	background-color: rgb(255, 255, 255);
+	
+}
